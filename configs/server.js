@@ -7,6 +7,7 @@ import morgan from "morgan"
 import { dbConnection } from "./mongo.js"
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
+import {initializeAdminUser } from "../src/auth/auth.controller.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -24,6 +25,7 @@ const routes = (app) =>{
 const conectarDB = async () =>{
     try{
         await dbConnection()
+        await initializeAdminUser()
     }catch(err){
         console.log(`Database connection failed: ${err}`)
         process.exit(1)

@@ -2,7 +2,10 @@ import { body, param } from "express-validator";
 import { emailExists, usernameExists, userExists } from "../helpers/db-validators.js";
 import { validarCampos } from "./validate-fields.js";
 import { deleteFileOnError } from "./delete-file-on-error.js";
+import {validateJWT } from "./validate-jwt.js";
 import { handleErrors } from "./handle-errors.js";
+import { hasRoles } from "./validate-roles.js";
+
 
 
 export const registerValidator = [
@@ -35,6 +38,8 @@ export const loginValidator = [
 
 
 export const updatePasswordValidator = [
+    validateJWT,
+    hasRoles("USER_ROLE"),
     param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
     param("uid").custom(userExists),
     body("newPassword").isLength({min: 8}).withMessage("El password debe contener al menos 8 caracteres"),
@@ -43,18 +48,20 @@ export const updatePasswordValidator = [
 ]
 
 export const updateUserValidator = [
-    param("id", "No es un ID válido").isMongoId(),
-    param("id").custom(userExists),
+    validateJWT,
+    hasRoles("USER_ROLE"), 
+    param("uid", "No es un ID válido").isMongoId(),
+    param("uid").custom(userExists),
     validarCampos,
     handleErrors
 ]
-
 export const updateProfilePictureValidator = [
+    validateJWT,
+    hasRoles("USER_ROLE"), 
     param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
     param("uid").custom(userExists),
     validarCampos,
     deleteFileOnError,
     handleErrors
 ]
-
 
