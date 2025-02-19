@@ -1,7 +1,6 @@
 import { hash, verify } from "argon2"
 import User from "../user/user.model.js"
 import { generateJWT } from "../helpers/generate-jwt.js";
-import bcrypt from "bcryptjs"
 export const register = async (req, res) => {
     try {
         const data = req.body;
@@ -59,6 +58,7 @@ export const login = async (req, res) => {
         })
     }catch(err){
         return res.status(500).json({
+            success: false,
             message: "login failed, server error",
             error: err.message
         })
@@ -68,26 +68,24 @@ export const login = async (req, res) => {
 // creacion de ADMIN_ROLE
 export const initializeAdminUser = async () => {
     try {
-        const adminExists = await User.findOne({ role: "ADMIN_ROLE" })
+        const adminExists = await User.findOne({ role: "ADMIN_ROLE" });
 
         if (!adminExists) {
-            const hashedPassword = bcrypt.hashSync("ADMIN25$ki", 10)
-
             const admin = new User({
                 name: "Admin",
                 surname: "Space",
                 username: "admin_role",
                 email: "admin@spacesocial.com",
-                password: hashedPassword,
+                password: "Contrasenia123",
                 phone: "21326554",
                 role: "ADMIN_ROLE",
                 status: true
-            })
+            });
 
-            await admin.save()
-            console.log("Usuario ADMIN_ROLE creado")
-        } 
+            await admin.save();
+            console.log("Usuario ADMIN_ROLE creado");
+        }
     } catch (error) {
-        console.error("Error al inicializar el usuario ADMIN_ROLE:", error)
+        console.error("Error al inicializar el usuario ADMIN_ROLE:", error);
     }
 }
