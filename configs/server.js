@@ -10,6 +10,7 @@ import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
 import postRoutes from "../src/post/post.routes.js"
 import {initializeAdminUser } from "../src/user/user.controller.js"
+import { defectCategory } from "../src/category/category.controller.js"; 
 import commentRoutes from "../src/comment/comment.routes.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js";
 import { swaggerDocs, swaggerUi } from "./swagger.js";
@@ -52,6 +53,7 @@ const conectarDB = async () =>{
     try{
         await dbConnection()
         await initializeAdminUser()
+        await defectCategory()
     }catch(err){
         console.log(`Database connection failed: ${err}`)
         process.exit(1)
