@@ -10,6 +10,7 @@ import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
 import postRoutes from "../src/post/post.routes.js"
 import {initializeAdminUser } from "../src/auth/auth.controller.js"
+import commentRoutes from "../src/comment/comment.routes.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
@@ -24,6 +25,7 @@ const routes = (app) =>{
     app.use("/spacesocial/v1/user", userRoutes)
     app.use("/spacesocial/v1/category", categoryRoutes)
     app.use("/spacesocial/v1/post", postRoutes)
+    app.use("/spacesocial/v1/comentario", commentRoutes)
 
 }
 
