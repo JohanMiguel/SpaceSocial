@@ -4,6 +4,32 @@ import { join, dirname } from "path"
 import path from "path"
 import Category from "../category/category.model.js"
 
+/**
+ * @swagger
+ * /posts/publicarPost:
+ *   post:
+ *     summary: Create a new post
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Post created
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
+ */
 export const createPost = async (req, res) => {
     try {
         const data = req.body;
@@ -52,6 +78,32 @@ export const createPost = async (req, res) => {
     }
 };
 
+/**
+ * @swagger
+ * /posts/updatePost/{post_id}:
+ *   put:
+ *     summary: Update a post
+ *     parameters:
+ *       - in: path
+ *         name: post_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Post ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Post'
+ *     responses:
+ *       200:
+ *         description: Post updated
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
+ */
 export const updatePost = async (req, res) => {
     try {
         pid
@@ -91,6 +143,24 @@ export const updatePost = async (req, res) => {
     }
 };
 
+/**
+ * @swagger
+ * /posts/deletePost/{post_id}:
+ *   delete:
+ *     summary: Delete a post
+ *     parameters:
+ *       - in: path
+ *         name: post_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Post ID
+ *     responses:
+ *       200:
+ *         description: Post deleted
+ *       500:
+ *         description: Server error
+ */
 export const deletePost = async (req, res) => {
     try {
         const { post_id } = req.params;
@@ -110,6 +180,28 @@ export const deletePost = async (req, res) => {
     }
 };
 
+/**
+ * @swagger
+ * /posts/postByCategory:
+ *   get:
+ *     summary: Retrieve posts by category
+ *     responses:
+ *       200:
+ *         description: A list of posts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 total:
+ *                   type: integer
+ *                 posts:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Post'
+ */
 export const getPostsByCategory = async (req, res) => {
     try {
         const posts = await Post.find()
@@ -137,10 +229,32 @@ export const getPostsByCategory = async (req, res) => {
     }
 };
 
-
-
-
-
+/**
+ * @swagger
+ * /posts/publicarPost:
+ *   post:
+ *     summary: Publish a post
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Post published
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
+ */
 export const publicarPost = async (req, res) => {
     try {
       const uid = req.user?.id || req.usuario?._id;
@@ -179,4 +293,3 @@ export const publicarPost = async (req, res) => {
     }
   };
 
- 

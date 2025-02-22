@@ -1,6 +1,32 @@
 import Comment from "./comment.model.js";
 import Post from "../post/post.model.js";
 
+/**
+ * @swagger
+ * /comments/addComment:
+ *   post:
+ *     summary: Add a new comment
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               postId:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Comment added
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
+ */
 export const createComment = async (req, res) => {
     try {
         
@@ -50,6 +76,37 @@ export const createComment = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /comments/updateComment/{id}:
+ *   put:
+ *     summary: Update a comment
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Comment ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Comment updated
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
+ */
 export const updateComment = async (req, res) => {
     try {
         const { id } = req.params;
@@ -90,6 +147,26 @@ export const updateComment = async (req, res) => {
     }
 }
 
+/**
+ * @swagger
+ * /comments/deleteComment/{id}:
+ *   delete:
+ *     summary: Delete a comment
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Comment ID
+ *     responses:
+ *       200:
+ *         description: Comment deleted
+ *       500:
+ *         description: Server error
+ */
 export const deleteComment = async (req, res) => {
     try {
         const { id } = req.params;

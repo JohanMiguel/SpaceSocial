@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c617ca38-b923-4fee-9a40-ead06ec7fbdf",
+		"_postman_id": "7b16e452-7d05-4510-aa75-896316843f1d",
 		"name": "SpaceSocial",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37634162"
@@ -81,7 +81,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"jtojin@gmail.com\",\r\n    \"password\": \"MGtojin$2020591\"\r\n}",
+							"raw": "\r\n/*\r\n{\r\n    \"email\": \"admin@spacesocial.com\",\r\n    \"password\": \"ADMIN254$sin\"\r\n}\r\n*/\r\n\r\n\r\n/*\r\n\r\n*/\r\n\r\n{\r\n    \"email\": \"jtojin@gmail.com\",\r\n    \"password\": \"MGtojin$2020591\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -178,6 +178,487 @@
 								"user",
 								"updateUser",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/category/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/category/buscarCategory/sport",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"category",
+								"buscarCategory",
+								"sport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZDVkNzM5ZGFmYWI4ODBlM2U2NjAiLCJpYXQiOjE3NDAxOTQ5ODIsImV4cCI6MTc0MDE5ODU4Mn0.6SOBZK1dYp-oYZxhVlp0CCCzbE2MrWlj0cx_9K-Dkuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"En el Mundo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/category/saveCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"category",
+								"saveCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZDVkNzM5ZGFmYWI4ODBlM2U2NjAiLCJpYXQiOjE3NDAxODg1MDksImV4cCI6MTc0MDE5MjEwOX0.xtqEwWmOufu3kd38182ov37cqds6CqyK4TR9UzzL5gM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/category/deleteCategory/67b920151b8311d5df3f2dae",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"category",
+								"deleteCategory",
+								"67b920151b8311d5df3f2dae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Wordl\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/category/editar/67b944c6ee99789d9df1c57d",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"category",
+								"editar",
+								"67b944c6ee99789d9df1c57d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Publicar Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTUxMDksImV4cCI6MTc0MDE5ODcwOX0.pv-YYYwWLiGEJKFY6WbrypsiuocAK7elOOSdWnYRLAg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Mi primera publicación\",\r\n  \"category\": \"67b944c6ee99789d9df1c57d\",\r\n  \"content\": \"Heyyyyy\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/post/publicarPost",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"post",
+								"publicarPost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/post/postByCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"post",
+								"postByCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTUxMDksImV4cCI6MTc0MDE5ODcwOX0.pv-YYYwWLiGEJKFY6WbrypsiuocAK7elOOSdWnYRLAg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Barca Gana\",\r\n  \"category\": \"67b944c6ee99789d9df1c57d\",\r\n  \"content\": \"Felizas ya que el Barca ganara\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/post/updatePost/67b94817ee6080a4b995f8b9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"post",
+								"updatePost",
+								"67b94817ee6080a4b995f8b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTUxMDksImV4cCI6MTc0MDE5ODcwOX0.pv-YYYwWLiGEJKFY6WbrypsiuocAK7elOOSdWnYRLAg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/post/deletePost/67b94817ee6080a4b995f8b9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"post",
+								"deletePost",
+								"67b94817ee6080a4b995f8b9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentarios",
+			"item": [
+				{
+					"name": "Nuevo comentario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTY0MTEsImV4cCI6MTc0MDIwMDAxMX0._Sg83ffP8e-SFrZ7tWVQ2jOU0ivf4xeGsdwOsum9_IA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Hola como estas comentario\",\r\n  \"post_id\": \"67b94817ee6080a4b995f8b9\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/comentario/addComment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"comentario",
+								"addComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Comentario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTY0MTEsImV4cCI6MTc0MDIwMDAxMX0._Sg83ffP8e-SFrZ7tWVQ2jOU0ivf4xeGsdwOsum9_IA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Comentario Actualizado.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/comentario/updateComment/67b94a4bee6080a4b995f8ca",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"comentario",
+								"updateComment",
+								"67b94a4bee6080a4b995f8ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Comentario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I4ZTEwNjAxMjYwZTE1M2Y5ZGJmN2UiLCJpYXQiOjE3NDAxOTY0MTEsImV4cCI6MTc0MDIwMDAxMX0._Sg83ffP8e-SFrZ7tWVQ2jOU0ivf4xeGsdwOsum9_IA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/spacesocial/v1/comentario/deleteComment/67b94a4bee6080a4b995f8ca",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"spacesocial",
+								"v1",
+								"comentario",
+								"deleteComment",
+								"67b94a4bee6080a4b995f8ca"
 							]
 						}
 					},

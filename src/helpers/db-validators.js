@@ -26,3 +26,10 @@ export const categoryExists = async (uid = " ") => {
         throw new Error("No existe la categoria con el ID proporcionado")
     }
 }
+
+export const postExists = async (uid = "") => {
+    const existe = await Post.findById(uid);
+    if (!existe) {
+        throw new Error(`No existe la publicación con el ID proporcionado`);
+    }
+};
