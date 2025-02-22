@@ -64,28 +64,3 @@ export const login = async (req, res) => {
         })
     }
 }
-
-// creacion de ADMIN_ROLE
-export const initializeAdminUser = async () => {
-    try {
-        const adminExists = await User.findOne({ role: "ADMIN_ROLE" });
-
-        if (!adminExists) {
-            const admin = new User({
-                name: "Admin",
-                surname: "Space",
-                username: "admin_role",
-                email: "admin@spacesocial.com",
-                password: "Contrasenia123",
-                phone: "21326554",
-                role: "ADMIN_ROLE",
-                status: true
-            });
-
-            await admin.save();
-            console.log("Usuario ADMIN_ROLE creado");
-        }
-    } catch (error) {
-        console.error("Error al inicializar el usuario ADMIN_ROLE:", error);
-    }
-}

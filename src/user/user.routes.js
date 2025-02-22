@@ -1,6 +1,6 @@
 import { Router } from "express"
 import {getUsers, updatePassword, updateUser, updateProfilePicture } from "./user.controller.js"
-import { updatePasswordValidator, updateUserValidator, updateProfilePictureValidator } from "../middlewares/user-validators.js"
+import { updatePasswordValidator, updateUserValidator } from "../middlewares/user-validators.js"
 import { uploadProfilePicture } from "../middlewares/multer-uploads.js"
 
 const router = Router()
