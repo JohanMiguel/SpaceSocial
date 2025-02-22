@@ -8,7 +8,7 @@ import { dbConnection } from "./mongo.js"
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
-
+import postRoutes from "../src/post/post.routes.js"
 import {initializeAdminUser } from "../src/auth/auth.controller.js"
 
 const middlewares = (app) => {
@@ -23,6 +23,7 @@ const routes = (app) =>{
     app.use("/spacesocial/v1/auth", authRoutes)
     app.use("/spacesocial/v1/user", userRoutes)
     app.use("/spacesocial/v1/category", categoryRoutes)
+    app.use("/spacesocial/v1/post", postRoutes)
 
 }
 
@@ -30,7 +31,6 @@ const conectarDB = async () =>{
     try{
         await dbConnection()
         await initializeAdminUser()
-        await defectCategory()
     }catch(err){
         console.log(`Database connection failed: ${err}`)
         process.exit(1)
