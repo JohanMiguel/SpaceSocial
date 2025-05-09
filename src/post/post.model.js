@@ -1,22 +1,22 @@
 import { Schema, model } from "mongoose";
 
 const postsSchema = Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     title: {
         type: String
-    },
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: "Category",
-        required: false
     },
     content: {
         type: String,
         required: true
     },
-    user: {
+    course: {
         type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+        ref: "Course",
+        required: false
     },
     comments: [{
         type: Schema.Types.ObjectId,
@@ -25,7 +25,7 @@ const postsSchema = Schema({
 },
 {
     versionKey: false,
-    timeStamps: true
-})
+    timestamps: true 
+});
 
 export default model("Post", postsSchema);

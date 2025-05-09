@@ -7,16 +7,16 @@ import morgan from "morgan"
 import { dbConnection } from "./mongo.js"
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
-import categoryRoutes from "../src/category/category.routes.js"
+import courseRoutes from "../src/course/course.routes.js"
 import postRoutes from "../src/post/post.routes.js"
-import {initializeAdminUser } from "../src/user/user.controller.js"
-import { defectCategory } from "../src/category/category.controller.js"; 
+import { initializeAdminUser } from "../src/user/user.controller.js"
+import { defectCourse } from "../src/course/course.controller.js"; 
 import commentRoutes from "../src/comment/comment.routes.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js";
 import { swaggerDocs, swaggerUi } from "./swagger.js";
 
 const middlewares = (app) => {
-    app.use(express.urlencoded({extended: false}))
+    app.use(express.urlencoded({ extended: false }))
     app.use(express.json())
     app.use(cors({
         origin: '*', 
@@ -37,24 +37,23 @@ const middlewares = (app) => {
 
     app.use(morgan("dev"))
     app.use(apiLimiter);
-
 }
 
-const routes = (app) =>{
-    app.use("/spacesocial/v1/auth", authRoutes)
-    app.use("/spacesocial/v1/user", userRoutes)
-    app.use("/spacesocial/v1/category", categoryRoutes)
-    app.use("/spacesocial/v1/post", postRoutes)
-    app.use("/spacesocial/v1/comentario", commentRoutes)
+const routes = (app) => {
+    app.use("/blog/v1/auth", authRoutes)
+    app.use("/blog/v1/user", userRoutes)
+    app.use("/blog/v1/course", courseRoutes)
+    app.use("/blog/v1/post", postRoutes)
+    app.use("/blog/v1/comentario", commentRoutes)
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 }
 
-const conectarDB = async () =>{
-    try{
+const conectarDB = async () => {
+    try {
         await dbConnection()
         await initializeAdminUser()
-        await defectCategory()
-    }catch(err){
+        await defectCourse()
+    } catch (err) {
         console.log(`Database connection failed: ${err}`)
         process.exit(1)
     }
@@ -62,13 +61,13 @@ const conectarDB = async () =>{
 
 export const initServer = () => {
     const app = express()
-    try{
+    try {
         middlewares(app)
         conectarDB()
         routes(app)
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
-    }catch(err){
+    } catch (err) {
         console.log(`Server init failed: ${err}`)
     }
 }

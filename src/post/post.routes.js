@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { publicarPost, getPostsByCategory, updatePost, deletePost  } from "./post.controller.js";
+import { publicarPost, updatePost, deletePost, getAllPosts, getPostById} from "./post.controller.js";
 import { createPostValidator, updatePostValidator, deletePostValidator } from "../middlewares/post-validator.js";
 
 const router = Router();
@@ -34,30 +34,6 @@ router.post("/publicarPost", createPostValidator, publicarPost);
 
 /**
  * @swagger
- * /posts/postByCategory:
- *   get:
- *     summary: Retrieve posts by category
- *     responses:
- *       200:
- *         description: A list of posts
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 total:
- *                   type: integer
- *                 posts:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Post'
- */
-router.get("/postByCategory", getPostsByCategory);
-
-/**
- * @swagger
  * /posts/updatePost/{post_id}:
  *   put:
  *     summary: Update a post
@@ -83,7 +59,6 @@ router.get("/postByCategory", getPostsByCategory);
  *         description: Server error
  */
 router.put("/updatePost/:uid", updatePostValidator, updatePost);
-
 /**
  * @swagger
  * /posts/deletePost/{post_id}:
@@ -103,5 +78,7 @@ router.put("/updatePost/:uid", updatePostValidator, updatePost);
  *         description: Server error
  */
 router.delete("/deletePost/:uid", deletePostValidator, deletePost);
+router.get("/", getAllPosts);
+router.get("/buscar/:post_id", getPostById);
 
 export default router;

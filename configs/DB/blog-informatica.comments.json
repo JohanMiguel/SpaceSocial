@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "681e3665fbf164d245e32fbc"
+  },
+  "nameUser": "Miguel Reyes",
+  "content": "Muy interesante su proyecto.",
+  "post": {
+    "$oid": "681e34a1fbf164d245e32f9e"
+  },
+  "createdAt": {
+    "$date": "2025-05-09T17:07:49.197Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-09T17:07:49.197Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681e36a9fbf164d245e32fc4"
+  },
+  "nameUser": "Jimena Martines",
+  "content": "Muy cool ese tema exitos.",
+  "post": {
+    "$oid": "681e34a1fbf164d245e32f9e"
+  },
+  "createdAt": {
+    "$date": "2025-05-09T17:08:57.794Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-09T17:08:57.794Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681e36dafbf164d245e32fc8"
+  },
+  "nameUser": "Maybe Tojin",
+  "content": "WOw increibles temas.",
+  "post": {
+    "$oid": "681e34a1fbf164d245e32f9e"
+  },
+  "createdAt": {
+    "$date": "2025-05-09T17:09:46.621Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-09T17:09:46.621Z"
+  }
+}]

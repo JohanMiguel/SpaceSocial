@@ -1,172 +1,54 @@
 import Comment from "./comment.model.js";
 import Post from "../post/post.model.js";
 
-/**
- * @swagger
- * /comments/addComment:
- *   post:
- *     summary: Add a new comment
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               postId:
- *                 type: string
- *               content:
- *                 type: string
- *     responses:
- *       201:
- *         description: Comment added
- *       400:
- *         description: Invalid input
- *       500:
- *         description: Server error
- */
 export const createComment = async (req, res) => {
     try {
-        
-        const { content, post_id } = req.body;
-        const user = req.usuario;
+        const { nameUser, content, post_id } = req.body;
 
-        if (!user) {
-            return res.status(404).json({
+        // Validar que los campos requeridos estén presentes
+        if (!nameUser || !content || !post_id) {
+            return res.status(400).json({
                 success: false,
-                message: 'Usuario no encontrado'
+                message: "Todos los campos (nameUser, content, post_id) son obligatorios",
             });
         }
 
+        // Verificar que el post exista
         const post = await Post.findById(post_id);
-
         if (!post) {
             return res.status(404).json({
                 success: false,
-                message: 'Publicación no encontrada'
+                message: "Publicación no encontrada",
             });
         }
 
+        // Crear el comentario
         const comment = new Comment({
+            nameUser,
             content,
-            user: user._id,
-            post: post_id
+            post: post_id,
         });
 
+        // Guardar el comentario en la base de datos
         await comment.save();
 
+        // Agregar el comentario al array de comentarios del post
         post.comments.push(comment._id);
         await post.save();
-    
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             message: "Comentario creado",
-            comment
+            comment,
         });
-
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message: "Error al crear comentario",
-            error: err.message
+            message: "Error al crear el comentario",
+            error: err.message,
         });
     }
-}
-
-/**
- * @swagger
- * /comments/updateComment/{id}:
- *   put:
- *     summary: Update a comment
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Comment ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               content:
- *                 type: string
- *     responses:
- *       200:
- *         description: Comment updated
- *       400:
- *         description: Invalid input
- *       500:
- *         description: Server error
- */
-export const updateComment = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { content } = req.body;
-        const user = req.usuario;
-
-        const comment = await Comment.findById(id);
-
-        if (!comment) {
-            return res.status(404).json({
-                success: false,
-                message: 'Comentario no encontrado'
-            });
-        }
-
-        if (comment.user.toString() !== user._id.toString()) {
-            return res.status(403).json({
-                success: false,
-                message: 'No tienes permiso para actualizar este comentario'
-            });
-        }
-
-        comment.content = content;
-        await comment.save();
-
-        res.status(200).json({
-            success: true,
-            message: 'Comentario actualizado',
-            comment
-        });
-
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            message: 'Error al actualizar comentario',
-            error: err.message
-        });
-    }
-}
-
-/**
- * @swagger
- * /comments/deleteComment/{id}:
- *   delete:
- *     summary: Delete a comment
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Comment ID
- *     responses:
- *       200:
- *         description: Comment deleted
- *       500:
- *         description: Server error
- */
+};
 export const deleteComment = async (req, res) => {
     try {
         const { id } = req.params;

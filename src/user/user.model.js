@@ -16,23 +16,9 @@ const userSchema = Schema({
         required: true,
         unique:true
     },
-    email:{
-        type: String,
-        required: [true, "Email is required"],
-        unique: true
-    },
     password:{
         type: String,
         required: [true, "Password is required"]
-    },
-    profilePicture:{
-        type: String
-    },
-    phone:{
-        type: String,
-        minLength: 8,
-        maxLength: 8,
-        required: true
     },
     role:{
         type: String,

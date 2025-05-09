@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createComment, updateComment, deleteComment } from "./comment.controller.js";
+import { createComment, deleteComment } from "./comment.controller.js";
 import { validateJWT } from "../middlewares/validate-jwt.js";
 import { hasRoles } from "../middlewares/validate-roles.js";
 
@@ -31,41 +31,7 @@ const router = Router();
  *       500:
  *         description: Server error
  */
-router.post("/addComment", validateJWT, hasRoles("USER_ROLE"), createComment);
-
-/**
- * @swagger
- * /comments/updateComment/{id}:
- *   put:
- *     summary: Update a comment
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: Comment ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               content:
- *                 type: string
- *     responses:
- *       200:
- *         description: Comment updated
- *       400:
- *         description: Invalid input
- *       500:
- *         description: Server error
- */
-router.put("/updateComment/:id", validateJWT, hasRoles("USER_ROLE"), updateComment);
-
+router.post("/addComment", createComment);
 /**
  * @swagger
  * /comments/deleteComment/{id}:
@@ -86,6 +52,6 @@ router.put("/updateComment/:id", validateJWT, hasRoles("USER_ROLE"), updateComme
  *       500:
  *         description: Server error
  */
-router.delete("/deleteComment/:id", validateJWT, hasRoles("USER_ROLE"), deleteComment);
+router.delete("/deleteComment/:id", validateJWT, hasRoles("ADMIN_ROLE"), deleteComment);
 
 export default router;

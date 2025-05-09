@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema, model } from "mongoose";
 
-const categorySchema = new Schema(
+const courseSchema = new Schema(
     {
         name: {
             type: String,
@@ -19,5 +19,5 @@ const categorySchema = new Schema(
     }
 );
 
-const Category = mongoose.model("Category", categorySchema);
-export default model("Category", categorySchema);
+const Course = mongoose.model("Course", courseSchema);
+export default model("Course", courseSchema);
